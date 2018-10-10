@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>state</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+  var StateComponent = React.createClass({
+		getInitialState: function () {
+			return {enable: false}
+		},
+		handleClick: function (event) {
+			this.setState({enable: !this.state.enable})
+		},
+		render: function () {
+			return (
+				<div>
+					<input type="text" disabled={this.state.enable} />
+					<button type="button" onClick={this.handleClick}>改变state状态</button>
+				</div>
+			)
+		}
+	})
+	ReactDOM.render(<StateComponent/>,document.getElementById('reactContainer'))
+</script>
+</html>

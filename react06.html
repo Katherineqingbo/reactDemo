@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>render/props</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+ var HelloBox = React.createClass({
+    render: function () {
+        return ( <div>{'hello' + this.props.myattr}</div>)
+    }
+ })
+ ReactDOM.render(<HelloBox myattr="JSPang"/>, document.getElementById('reactContainer'))
+</script>
+</html>
