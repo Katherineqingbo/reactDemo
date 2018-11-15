@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react可控组件</title>
+</head>
+<body>
+    <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+    let MyReact = React.createClass({
+        getInitialState: function () {
+            return {
+                val: 'jspang'
+            }
+        },
+        handleChange: function (val,event) { // {name: event.target.value}
+            let newState = {}
+            newState[val] = event.target.value
+            this.setState(newState)
+            console.log(newState)
+        },
+        render: function () {
+            return (
+                <div>
+                    <input type="text" value={this.state.val} name="val"  onChange={this.handleChange.bind(this,'val')}/>
+                </div>
+            )
+        }
+    })
+    ReactDOM.render(<MyReact />, document.getElementById('reactContainer'))
+</script>
+</html>

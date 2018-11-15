@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>react组件--声明周期</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+    // 组件的周期
+    // 1. mounting: 表示正在挂接虚拟Dom到真是的Dom  --挂载
+    // 2. updating: 表示正在被重新渲染             --更新
+    // 3. unmounting: 表示正在将虚拟Dom移除真是Dom  --销毁
+    // 组件的周期函数
+    // 1. componentWillMount()
+    // 2. componentDidMount()
+    // 3. componentWillUpdate()
+    // 4. componentDidUpdate()
+    // 5. componentWillUnmount()
+
+    var AddCount = React.createClass({
+        getInitialState: function () {
+            console.log('1.getInitialState')
+            return {count: 1}
+        },
+        componentWillMount: function() {
+            console.log('2.componentWillMount')
+        },
+        componentDidMount: function() {
+            console.log('3.componentDidMount')
+        },
+        componentWillUpdate: function() {
+            console.log('4.componentWillUpdate')
+        },
+        componentDidUpdate: function() {
+            console.log('4.componentDidUpdate')
+        },
+        handleClick: function() {
+            this.setState({
+                count: this.state.count+1
+            })
+        },
+        render:function(){
+            return(
+                <div>
+                    <h4>{this.state.count}</h4>
+                    <button onClick={this.handleClick}>add</button>
+                </div>
+            )
+        }
+    })
+    ReactDOM.render(<AddCount/>, document.getElementById('reactContainer'))
+</script>
+</html>

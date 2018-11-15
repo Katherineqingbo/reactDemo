@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>form表单1</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+   var MyForm = React.createClass({
+        getInitialState:function(){
+          return {
+            username: '',
+            checked: true,
+            gender: 'man'
+          }
+        },
+        handleChange:function(name,event){
+          var newState = {}
+          // 重新赋值
+          newState[name] = name == 'checked' ? event.target.checked : event.target.value
+          this.setState(newState)
+          console.log(newState)
+        },
+        handleSubmit:function(e){
+          e.preventDefault();
+          var _is = this.state.checked ? '是' : '不是'
+          var _gender = this.state.gender == 'man' ? '帅哥' : '美女'
+          alert(this.state.username+_is+_gender)
+        },
+        render: function () {
+          return(
+            <form onSubmit={this.handleSubmit}>
+              <label htmlFor="username">请输入姓名：</label>
+              <input type="text" name="username" id="username" value={this.state.username} onChange={this.handleChange.bind(this,'username')}/>
+              <br/>
+              <label htmlFor="checked">是或否：</label>
+              <input type="checkbox" name="checked" id="checked" value='' onChange={this.handleChange.bind(this,'checked')} checked={this.state.checked}/>
+              <br/>
+              <label htmlFor="gender">类型：</label>
+              <select name="gender" id="gender" value={this.state.gender} onChange={this.handleChange.bind(this,'gender')}>
+                <option value="man">帅哥</option>
+                <option value="woman">美女</option>
+              </select>
+              <br/>
+              <button type="submit">提交</button>
+            </form>
+          )
+        }
+   })
+   ReactDOM.render(<MyForm />,document.getElementById('reactContainer'))
+</script>
+</html> 

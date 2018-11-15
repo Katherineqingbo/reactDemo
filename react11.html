@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>获取真实DOM节点</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+    var MyComponent = React.createClass({
+        handleClick: function(){
+            this.refs.inputText.focus()
+        },
+        render:function(){
+            return (
+                <div>
+                    <input type="text" ref="inputText"/>
+                    <input type="button" value="focus" onClick={this.handleClick}/>
+                </div>
+            )
+        }
+    })
+   ReactDOM.render(<MyComponent />,document.getElementById('reactContainer'))
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>react小demo闪动效果</title>
+</head>
+<body>
+  <div id="reactContainer"></div>
+</body>
+<script src="./common/react.js"></script>
+<script src="./common/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+    var FlashingFont = React.createClass({
+			getInitialState: function () {
+				return {
+					opacity: 1.0
+				}
+			},
+			componentDidMount: function(){
+				setInterval(function(){
+					var _opacity = this.state.opacity
+					_opacity -= .05
+					if (_opacity<0.1) {
+						_opacity = 1.0
+					}
+					// 赋值 设置属性
+					this.setState({opacity:_opacity})
+				}.bind(this),100)
+			},
+			render: function () {
+				return (
+					<div style={{opacity: this.state.opacity}}>
+						hello {this.props.name}
+					</div>
+				)
+			}
+		})
+		ReactDOM.render(<FlashingFont name="FlashingFont"/>,document.getElementById('reactContainer'))
+</script>
+</html>
